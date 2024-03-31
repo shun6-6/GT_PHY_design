@@ -100,7 +100,7 @@ initial begin
     r_send_value    = 'd0; 
     wait(!rst);
    // forever begin
-    phy_tx_test(10,4'b1110); 
+    phy_tx_test(10,4'b1100); 
    // end
 end
 

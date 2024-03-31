@@ -219,7 +219,7 @@ gt_module gt_module_u0(
     .i_rx0_polarity              (0),
     .i_loopback0                 (0),
     .i_0_drpaddr                 (0), 
-    .i_0_drpclk                  (0),
+    .i_0_drpclk                  (i_sysclk          ),
     .i_0_drpdi                   (0), 
     .o_0_drpdo                   (), 
     .i_0_drpen                   (0),

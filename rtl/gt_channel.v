@@ -106,7 +106,7 @@ common_reset_i
 
 gtwizard_0  gtwizard_0_i
 (
-    .sysclk_in                      (i_sysclk               ), 
+    .sysclk_in                      (i_sysclk               ), //SYSCLK是一个自由运行的系统/板载时钟，用于驱动示例设计中的FPGA逻辑。当启用DRP接口时，DRP_CLK连接到示例设计中的SYSCLK。需要在XDC中对此时钟进行约束。
     .soft_reset_tx_in               (i_tx_rst               ), 
     .soft_reset_rx_in               (i_rx_rst               ), 
     .dont_reset_on_data_error_in    (0                      ), 
@@ -118,7 +118,7 @@ gtwizard_0  gtwizard_0_i
     .gt0_rx_mmcm_lock_in            (gt0_rxmmcm_lock_i      ),
     .gt0_rx_mmcm_reset_out          (gt0_rxmmcm_reset_i     ), 
     .gt0_drpaddr_in                 (i_drpaddr              ),     
-    .gt0_drpclk_in                  (i_drpclk               ),     
+    .gt0_drpclk_in                  (i_sysclk               ),     
     .gt0_drpdi_in                   (i_drpdi                ),     
     .gt0_drpdo_out                  (o_drpdo                ),     
     .gt0_drpen_in                   (i_drpen                ),     
@@ -134,12 +134,12 @@ gtwizard_0  gtwizard_0_i
     .gt0_rxclkcorcnt_out            (                       ),
     .gt0_rxusrclk_in                (gt0_rxusrclk_i         ), 
     .gt0_rxusrclk2_in               (gt0_rxusrclk2_i        ), 
-    .gt0_rxdata_out                 (o_rx_data              ),
+    .gt0_rxdata_out                 (o_rx_data              ),//接收数据,位宽为IP配置的用户位宽
     .gt0_rxdisperr_out              (), 
     .gt0_rxnotintable_out           (), 
-    .gt0_gtxrxp_in                  (i_gt_rx_p              ),     
-    .gt0_gtxrxn_in                  (i_gt_rx_n              ),     
-    .gt0_rxbyteisaligned_out        (o_rx_ByteAlign         ), 
+    .gt0_gtxrxp_in                  (i_gt_rx_p              ),//输入差分引脚    
+    .gt0_gtxrxn_in                  (i_gt_rx_n              ),//输入差分引脚    
+    .gt0_rxbyteisaligned_out        (o_rx_ByteAlign         ),//接收数据字节对齐指示信号
     .gt0_rxdfelpmreset_in           (0                      ), 
     .gt0_rxmonitorout_out           (),     
     .gt0_rxmonitorsel_in            (0                      ), 
@@ -147,7 +147,7 @@ gtwizard_0  gtwizard_0_i
     .gt0_gtrxreset_in               (i_rx_rst               ), 
     .gt0_rxpmareset_in              (i_rx_rst               ), 
     .gt0_rxpolarity_in              (i_rx_polarity          ), 
-    .gt0_rxcharisk_out              (o_rx_char              ), 
+    .gt0_rxcharisk_out              (o_rx_char              ),//标记接收的有效的8B/10BK字符。高位比特对应数据路径的高位字节。
     .gt0_rxresetdone_out            (o_rx_done              ), 
     .gt0_txpostcursor_in            (i_txpostcursor         ), 
     .gt0_txprecursor_in             (i_txpercursor          ), 
@@ -156,13 +156,13 @@ gtwizard_0  gtwizard_0_i
     .gt0_txusrclk_in                (gt0_txusrclk_i         ), 
     .gt0_txusrclk2_in               (gt0_txusrclk2_i        ), 
     .gt0_txdiffctrl_in              (i_tx_diffctrl          ), 
-    .gt0_txdata_in                  (i_tx_data              ), 
-    .gt0_gtxtxn_out                 (o_gt_tx_n              ),     
-    .gt0_gtxtxp_out                 (o_gt_tx_p              ),     
+    .gt0_txdata_in                  (i_tx_data              ),//与接收同理 
+    .gt0_gtxtxn_out                 (o_gt_tx_n              ),//与接收同理     
+    .gt0_gtxtxp_out                 (o_gt_tx_p              ),//与接收同理     
     .gt0_txoutclk_out               (gt0_txoutclk_i         ), 
     .gt0_txoutclkfabric_out         (),     
     .gt0_txoutclkpcs_out            (),     
-    .gt0_txcharisk_in               (i_tx_char              ), 
+    .gt0_txcharisk_in               (i_tx_char              ),//与接收同理  
     .gt0_txresetdone_out            (),     
     .gt0_txpolarity_in              (i_tx_polarity          ), 
 

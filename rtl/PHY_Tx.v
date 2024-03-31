@@ -68,6 +68,7 @@ wire            w_fifo_full     ;
 wire            w_fifo_empty    ;
 wire [31:0]     w_lfsr_data     ;
 /***************component*************/
+//该FIFO模式为first word fall through模式，读潜伏期为0
 FIFO_32X1024 FIFO_32X1024_tx (
   .clk              (i_clk          ),
   .din              (i_tx_axis_data    ),

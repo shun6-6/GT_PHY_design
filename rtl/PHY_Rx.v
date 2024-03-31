@@ -242,9 +242,9 @@ always @(posedge i_clk or posedge i_rst)begin
     else if(r_eof_1f && (r_sof_local >= (r_eof_local - 1)))
         ro_rx_axis_keep <= (4'hf << (r_sof_local + 1 - r_eof_local));
     else if(r_eof && (r_sof_local < (r_eof_local - 1)))
-        ro_rx_axis_keep <= (8'hff << (4-(r_eof_local - 1 - r_sof_local)));
+        ro_rx_axis_keep <= (4'hf << (4-(r_eof_local - 1 - r_sof_local)));
     else if(r_sof || r_run)
-        ro_rx_axis_keep <= 8'hff;
+        ro_rx_axis_keep <= 4'hf;
     else
         ro_rx_axis_keep <= 'd0;
 end
